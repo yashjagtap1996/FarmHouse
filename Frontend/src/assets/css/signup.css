@@ -1,0 +1,37 @@
+.main-div {
+    min-height: 120vh;
+}
+
+.signup-form {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 30px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+
+
+/* Position the eye icon properly */
+.show-btn-inside {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+}
+
+.form-control:focus+.show-btn-inside,
+.show-btn-inside:hover {
+    color: #000;
+}
