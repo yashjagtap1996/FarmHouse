@@ -3,6 +3,7 @@ import '../assets/css/contact.css';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 import { FaPaperPlane } from 'react-icons/fa';
+import { useForm } from 'react-hook-form';
 
 const Contact = () => {
     const FAQ = [
@@ -30,6 +31,11 @@ const Contact = () => {
     const toggleFAQ = (index) => {
         setOpenIndex(openIndex === index ? null : index);
     };
+
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const onSubmit = (data) => {
+        console.log(data);
+    }
 
     return (
         <div className="contact-page">
@@ -75,7 +81,7 @@ const Contact = () => {
                                 <div>
                                     <h5 className="contact-item-title mb-1">WhatsApp</h5>
                                     <p className="contact-item-text mb-0">
-                                        <a href="https://wa.me/911234567890" className="whatsapp-link">Chat with us directly</a>
+                                        <a href="https://wa.me/8623099391" className="whatsapp-link">Chat with us directly</a>
                                     </p>
                                 </div>
                             </div>
@@ -105,47 +111,62 @@ const Contact = () => {
                 <div className="row justify-content-center">
                     <div className="col-lg-8">
                         <h2 className="text-center mb-4">Send us a Message</h2>
-                        <form className='contact-form bg-white p-4 p-md-5 rounded-3 shadow-sm'>
+                        <form className='contact-form bg-white p-4 p-md-5 rounded-3 shadow-sm' onSubmit={handleSubmit(onSubmit)}>
                             <div className='mb-3'>
                                 <label htmlFor="name" className="form-label">Your Name</label>
                                 <input
                                     type="text"
-                                    className='form-control'
+                                    {...register("name", { required: "Name is Required" })}
+                                    className={`form-control ${errors.name ? 'is-invalid' : 'isSuccess'}`}
                                     placeholder='John Doe'
                                 />
+                                <p className='text-danger'>{errors.name?.message}</p>
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="email" className="form-label">Your Email</label>
                                 <input
                                     type="email"
-                                    className='form-control'
+                                    {...register("email", { required: "Email is Required" })}
+                                    className={`form-control ${errors.email ? 'is-invalid' : 'isSuccess'}`}
                                     placeholder='your@email.com'
                                 />
+                                <p className='text-danger'>{errors.email?.message}</p>
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="phone" className="form-label">Your Phone Number</label>
                                 <input
                                     type="tel"
-                                    className='form-control'
+                                    {...register("phone", {
+                                        required: "Phone Number is Required",
+                                        pattern: {
+                                            value: /^[6-9]\d{9}$/,
+                                            message: "Enter a valid 10-digit Indian phone number"
+                                        }
+                                    })}
+                                    className={`form-control ${errors.phone ? 'is-invalid' : 'isSuccess'}`}
                                     placeholder='+91 98765 43210'
                                 />
+                                <p className='text-danger'>{errors.phone?.message}</p>
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="purpose" className="form-label">Purpose of Contact</label>
                                 <select
-                                    className='form-select'
+                                    {...register("purpose", { required: "Purpose is Required" })}
+                                    className={`form-select ${errors.purpose ? 'is-invalid' : 'isSuccess'}`}
+                                    defaultValue=""
                                 >
-                                    <option value="Purpose of Contact">Select a purpose</option>
+                                    <option value="" disabled>Select a purpose</option>
                                     <option value="Booking">Booking</option>
                                     <option value="Event Inquiry">Event Inquiry</option>
                                     <option value="General Questions">General Questions</option>
                                     <option value="Other">Other</option>
                                 </select>
+                                <p className='text-danger'>{errors.purpose?.message}</p>
                             </div>
                             <div className="mb-4">
                                 <label htmlFor="message" className="form-label">Your Message</label>
                                 <textarea
-                                    className="form-control"
+                                    className="form-control isSuccess"
                                     rows="4"
                                     placeholder="How can we help you?"
                                 ></textarea>
