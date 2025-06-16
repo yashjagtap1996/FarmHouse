@@ -126,7 +126,12 @@ const Contact = () => {
                                 <label htmlFor="email" className="form-label">Your Email</label>
                                 <input
                                     type="email"
-                                    {...register("email", { required: "Email is Required" })}
+                                    {...register("email", {
+                                        required: "Email is Required", pattern: {
+                                            value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+                                            message: "Enter a valid email address"
+                                        }
+                                    },)}
                                     className={`form-control ${errors.email ? 'is-invalid' : 'isSuccess'}`}
                                     placeholder='your@email.com'
                                 />
@@ -166,11 +171,19 @@ const Contact = () => {
                             <div className="mb-4">
                                 <label htmlFor="message" className="form-label">Your Message</label>
                                 <textarea
-                                    className="form-control isSuccess"
+                                    {...register("message", {
+                                        maxLength: {
+                                            value: 100,
+                                            message: "Message should be less than 100 characters"
+                                        }
+                                    })}
+                                    className={`form-control ${errors.message ? 'is-invalid' : 'isSuccess'}`}
                                     rows="4"
                                     placeholder="How can we help you?"
                                 ></textarea>
+                                <p className='text-danger'>{errors.message?.message}</p>
                             </div>
+
                             <button
                                 type="submit"
                                 className="btn btn-success w-100 py-3 fw-bold d-flex align-items-center justify-content-center"
