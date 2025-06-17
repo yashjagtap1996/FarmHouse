@@ -4,6 +4,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 import { FaPaperPlane } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import axios from 'axios'
 
 const Contact = () => {
     const FAQ = [
@@ -32,9 +33,15 @@ const Contact = () => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    const onSubmit = (data) => {
-        console.log(data);
+    const { register, handleSubmit, reset,formState: { errors } } = useForm()
+    const onSubmit = async (data) => {
+try {
+    const response = await axios.post("http://localhost:3000/contact", data)
+    alert(response.data.message || "Message sent successfully!");
+    reset();
+} catch (error) {
+    console.error("Error sending message:", error);
+}
     }
 
     return (
@@ -81,7 +88,7 @@ const Contact = () => {
                                 <div>
                                     <h5 className="contact-item-title mb-1">WhatsApp</h5>
                                     <p className="contact-item-text mb-0">
-                                        <a href="https://wa.me/8623099391" className="whatsapp-link">Chat with us directly</a>
+                                        <a href="https://wa.me/8623099391" target='_blank' className="whatsapp-link">Chat with us directly</a>
                                     </p>
                                 </div>
                             </div>
@@ -115,7 +122,8 @@ const Contact = () => {
                             <div className='mb-3'>
                                 <label htmlFor="name" className="form-label">Your Name</label>
                                 <input
-                                    type="text"
+                                    type="text" 
+                                    name='name'
                                     {...register("name", { required: "Name is Required" })}
                                     className={`form-control ${errors.name ? 'is-invalid' : 'isSuccess'}`}
                                     placeholder='John Doe'
@@ -125,7 +133,8 @@ const Contact = () => {
                             <div className='mb-3'>
                                 <label htmlFor="email" className="form-label">Your Email</label>
                                 <input
-                                    type="email"
+                                    type="email" 
+                                    name='email'
                                     {...register("email", {
                                         required: "Email is Required", pattern: {
                                             value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
@@ -141,6 +150,7 @@ const Contact = () => {
                                 <label htmlFor="phone" className="form-label">Your Phone Number</label>
                                 <input
                                     type="tel"
+                                    name='phone'
                                     {...register("phone", {
                                         required: "Phone Number is Required",
                                         pattern: {
@@ -155,7 +165,8 @@ const Contact = () => {
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="purpose" className="form-label">Purpose of Contact</label>
-                                <select
+                                <select 
+                                    name='purpose'
                                     {...register("purpose", { required: "Purpose is Required" })}
                                     className={`form-select ${errors.purpose ? 'is-invalid' : 'isSuccess'}`}
                                     defaultValue=""
@@ -170,7 +181,8 @@ const Contact = () => {
                             </div>
                             <div className="mb-4">
                                 <label htmlFor="message" className="form-label">Your Message</label>
-                                <textarea
+                                <textarea 
+                                 name='message'
                                     {...register("message", {
                                         maxLength: {
                                             value: 100,
@@ -198,7 +210,7 @@ const Contact = () => {
 
 
             <div className='text-center py-4 bg-light'>
-                <a href="https://wa.me/8623099391" className='whatsapp-btn'>
+                <a href="https://wa.me/8623099391" target='_blank' className='whatsapp-btn'>
                     <FaWhatsapp className="me-2" /> Chat with Us on WhatsApp
                 </a>
             </div>
