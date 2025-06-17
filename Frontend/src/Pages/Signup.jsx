@@ -48,12 +48,8 @@ const Signup = () => {
                     <label className="form-label">Email</label>
                     <input
                         type="email"
-                        {...register("email", {
-                            required: "Email is Required", pattern: {
-                                value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                                message: "Enter a valid email address"
-                            }
-                        },)}
+                        {...register("email", { required: "Email is Required" })}
+                        className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                         placeholder="Enter email"
                     />
                     <p className='text-danger'>{errors.email?.message}</p>
