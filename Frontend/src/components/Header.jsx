@@ -1,6 +1,9 @@
 import React from 'react';
 import '../assets/css/header.css';
-import { FaLeaf, FaUser, FaCalendarAlt, FaPhoneAlt } from 'react-icons/fa';
+import { FaLeaf, FaUser, FaCalendarAlt, FaPhoneAlt, FaImages } from 'react-icons/fa';
+
+
+
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -36,9 +39,21 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/contact">
+                                    <span className="nav-icon"><FaImages /></span>
+                                    Gallery
+                                </Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link login-btn" to="/login">
                                     <span className="nav-icon"><FaUser /></span>
                                     Login
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link login-btn" to="/signup">
+                                    <span className="nav-icon"><FaUser /></span>
+                                    Signup
                                 </Link>
                             </li>
                         </ul>
