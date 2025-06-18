@@ -2,57 +2,67 @@ import React, { useState } from 'react';
 import '../assets/css/signup.css';
 import { useForm } from 'react-hook-form'
 import { FiEye, FiEyeOff } from "react-icons/fi";
-
+import { FaLeaf } from "react-icons/fa";
 
 const Signup = () => {
-
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const onSubmit = (data) => {
         console.log(data);
 
-    }
-    const password = watch('password')
+    };
 
-    const [showPassword, setShowPassword] = useState(false)
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const password = watch('password');
 
     return (
-        <div className=" main-div d-flex align-items-center justify-content-center ">
-            <form className="signup-form shadow-lg p-5 bg-white " onSubmit={handleSubmit(onSubmit)}>
-                <h2 className="text-center mb-4 fw-bold">Create Account</h2>
-
-                <div className="mb-3">
-                    <label className="form-label">First Name</label>
-                    <input
-                        type="text"
-                        {...register("firstName", { required: "First name is Required" })}
-                        className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
-                        placeholder="Enter first name"
-                    />
-                    <p className='text-danger'>{errors.firstName?.message}</p>
+        <div className="main-div d-flex align-items-center justify-content-center bg-light">
+            <form className="signup-form shadow-lg p-5 bg-white rounded-3" onSubmit={handleSubmit(onSubmit)}>
+                <div className="text-center mb-4">
+                    <FaLeaf size={40} className="text-success mb-2" />
+                    <h2 className="fw-bold">Green Valley Farmhouse</h2>
                 </div>
 
-                <div className="mb-3">
-                    <label className="form-label">Last Name</label>
-                    <input
-                        type="text"
-                        {...register("lastName", { required: "Last name is Required" })}
-                        className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
-                        placeholder="Enter last name"
-                    />
-                    <p className='text-danger'>{errors.lastName?.message}</p>
+
+                <div className="row ">
+                    <div className="col-md-6">
+                        <label className="form-label">First Name</label>
+                        <input
+                            type="text"
+                            {...register("firstName", { required: "First name is required" })}
+                            className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
+                            placeholder="Enter first name"
+                        />
+                        <p className='text-danger small'>{errors.firstName?.message}</p>
+                    </div>
+                    <div className="col-md-6">
+                        <label className="form-label">Last Name</label>
+                        <input
+                            type="text"
+                            {...register("lastName", { required: "Last name is required" })}
+                            className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
+                            placeholder="Enter last name"
+                        />
+                        <p className='text-danger small'>{errors.lastName?.message}</p>
+                    </div>
                 </div>
 
                 <div className="mb-3">
                     <label className="form-label">Email</label>
                     <input
                         type="email"
-                        {...register("email", { required: "Email is Required" })}
+                        {...register("email", {
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "Invalid email address"
+                            }
+                        })}
                         className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                         placeholder="Enter email"
                     />
-                    <p className='text-danger'>{errors.email?.message}</p>
+                    <p className='text-danger small'>{errors.email?.message}</p>
                 </div>
 
                 <div className="mb-3">
@@ -103,7 +113,12 @@ const Signup = () => {
                 </div>
 
                 <div className="d-grid">
-                    <button type="submit" className="btn btn-success">Sign Up</button>
+                    <button type="submit" className="btn btn-success btn-lg">
+                        Join as Guest
+                    </button>
+                </div>
+                <div className="text-center mt-3">
+                    <p className="small text-muted">Already have an account? <a href="/login" className="text-success">Log in</a></p>
                 </div>
             </form>
         </div>
