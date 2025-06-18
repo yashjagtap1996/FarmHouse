@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../assets/css/login.css'
 import { FcGoogle } from "react-icons/fc";
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const Login = () => {
+
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
         <div className="d-flex align-items-center justify-content-center vh-100">
             <form className="login-form shadow-lg  p-5 bg-white">
@@ -15,7 +19,13 @@ const Login = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" placeholder="Enter password" />
+                    <div className='position-relative  '>
+                        <input type={`${showPassword ? "text" : "password"}`} className="form-control" id="password" placeholder="Enter password" />
+                        <button className='show-btn-inside' type='button' onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <FiEyeOff size={15} /> : <FiEye size={15} />}
+                        </button>
+                    </div>
+
                 </div>
                 <div className="d-grid mt-4">
                     <button type="submit" className="btn btn-success">Login</button>
