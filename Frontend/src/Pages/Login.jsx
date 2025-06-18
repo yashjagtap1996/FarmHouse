@@ -13,7 +13,7 @@ const Login = () => {
             <form className="login-form shadow-lg  p-5 bg-white  rounded-3" >
                 <div className="text-center mb-4">
                     <FaLeaf size={40} className="text-success mb-3" />
-                    <h2 className="fw-bold">Welcome to Green vally Farmhouse</h2>
+                    <h2 className="fw-bold">Welcome to Green Vally Farmhouse</h2>
 
                 </div>
                 <div className="mb-3">
