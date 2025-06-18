@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import '../assets/css/login.css'
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { FaLeaf, FaUser } from 'react-icons/fa';
 
 const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <div className="d-flex align-items-center justify-content-center vh-100">
-            <form className="login-form shadow-lg  p-5 bg-white">
+        <div className="d-flex align-items-center justify-content-center vh-100 mt-5">
+            <form className="login-form shadow-lg  p-5 bg-white  rounded-3" >
                 <div className="text-center mb-4">
-                    <h2 className="fw-bold">Welcome</h2>
+                    <FaLeaf size={40} className="text-success mb-3" />
+                    <h2 className="fw-bold">Welcome to Green vally Farmhouse</h2>
+
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
@@ -28,7 +31,9 @@ const Login = () => {
 
                 </div>
                 <div className="d-grid mt-4">
-                    <button type="submit" className="btn btn-success">Login</button>
+                    <button type="submit" className="btn btn-success d-flex align-items-center justify-content-center gap-2 py-2 fs-6"><FaUser size={20} />
+                        <span style={{ fontWeight: '500' }}>Login</span>
+                    </button>
                 </div>
                 <div className="d-flex align-items-center my-4">
                     <hr className="flex-grow-1" />
