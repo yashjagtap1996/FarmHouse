@@ -47,6 +47,15 @@ const Login = () => {
                         <span style={{ fontWeight: '500' }}>Google</span>
                     </button>
                 </div>
+
+                <div className="text-center mt-4">
+                    <p className="small text-muted">
+                        Don't have an account?{' '}
+                        <a href="/signup" className="text-success fw-semibold text-decoration-none">
+                            Sign up
+                        </a>
+                    </p>
+                </div>
             </form>
         </div>
     );
