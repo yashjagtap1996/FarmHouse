@@ -9,7 +9,7 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <div className="d-flex align-items-center justify-content-center vh-100 mt-5">
+        <div className=" login-div d-flex align-items-center justify-content-center mt-5">
             <form className="login-form shadow-lg  p-5 bg-white  rounded-3" >
                 <div className="text-center mb-4">
                     <FaLeaf size={40} className="text-success mb-3" />
