@@ -75,7 +75,7 @@ const Signup = () => {
                             className="show-btn-inside"
                             onClick={() => setShowPassword(!showPassword)}
                         >
-                            {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                            {showPassword ? <FiEyeOff size={15} /> : <FiEye size={15} />}
                         </button>
                     </div>
                     <p className="text-danger">{errors.password?.message}</p>
@@ -96,7 +96,7 @@ const Signup = () => {
                             className="show-btn-inside"
                             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                         >
-                            {showConfirmPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                            {showConfirmPassword ? <FiEyeOff size={15} /> : <FiEye size={15} />}
                         </button>
                     </div>
                     <p className='text-danger'>{errors.confirmPassword?.message}</p>
