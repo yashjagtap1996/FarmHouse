@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <header className="farmhouse-header">
             <nav className="navbar navbar-expand-lg">
-                <div className="container">
+                <div className="head-div">
                     <a className="navbar-brand" href="#home">
                         <FaLeaf className="brand-icon" />
                         <span className="brand-name">Green Valley Farmhouse</span>
@@ -23,7 +23,19 @@ const Header = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/">
                                     <span className="nav-icon"><FaLeaf /></span>
+                                    Home
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/">
+                                    <span className="nav-icon"><FaLeaf /></span>
                                     About
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/">
+                                    <span className="nav-icon"><FaLeaf /></span>
+                                    Services
                                 </Link>
                             </li>
                             <li className="nav-item">
