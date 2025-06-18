@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import '../assets/css/contact.css';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaWhatsapp } from "react-icons/fa";
-import { FaPaperPlane } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaWhatsapp, FaPaperPlane } from "react-icons/fa";
 import { useForm } from 'react-hook-form';
-import axios from 'axios'
+import axios from 'axios';
 
 const Contact = () => {
     const FAQ = [
@@ -27,25 +26,54 @@ const Contact = () => {
     ];
 
     const [openIndex, setOpenIndex] = useState(null);
-
+    const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
 
     const toggleFAQ = (index) => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
-    const { register, handleSubmit, reset,formState: { errors } } = useForm()
+    const showToast = (message, type = 'success') => {
+        setToast({ show: true, message, type });
+        setTimeout(() => setToast({ show: false, message: '', type: 'success' }), 3000);
+    };
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
     const onSubmit = async (data) => {
-try {
-    const response = await axios.post("http://localhost:3000/contact", data)
-    alert(response.data.message || "Message sent successfully!");
-    reset();
-} catch (error) {
-    console.error("Error sending message:", error);
-}
-    }
+        try {
+            const response = await axios.post("http://localhost:3000/contact", data);
+            showToast(response.data.message || "Message sent successfully!", 'success');
+            reset();
+        } catch (error) {
+            console.error("Error sending message:", error);
+            showToast("Failed to send message. Please try again later.", 'danger');
+        }
+    };
 
     return (
         <div className="contact-page">
+            {/* Toast */}
+            {toast.show && (
+                <div
+                    className="toast-container position-fixed top-0 end-0 p-3"
+                    style={{ zIndex: 9999 }}
+                >
+                    <div className={`toast align-items-center text-white bg-${toast.type} border-0 show`}>
+                        <div className="d-flex">
+                            <div className="toast-body">
+                                {toast.message}
+                            </div>
+                            <button
+                                type="button"
+                                className="btn-close btn-close-white me-2 m-auto"
+                                onClick={() => setToast({ show: false, message: '', type: 'success' })}
+                            ></button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Hero */}
             <div className='contact-hero'>
                 <div className='container'>
                     <div className='contact-hero-content text-center py-5'>
@@ -55,12 +83,12 @@ try {
                 </div>
             </div>
 
+            {/* Contact Info & Map */}
             <div className='container py-5'>
                 <div className="row g-4">
                     <div className="col-lg-6">
                         <div className="contact-info-card p-4 p-lg-5 h-100">
                             <h2 className="section-title mb-4">Contact Information</h2>
-
                             <div className="contact-item d-flex mb-4">
                                 <div className="contact-icon me-3">
                                     <FaMapMarkerAlt className="text-primary" size={24} />
@@ -70,7 +98,6 @@ try {
                                     <p className="contact-item-text mb-0">123 Green Fields Farm, Near ABC Village, XYZ District</p>
                                 </div>
                             </div>
-
                             <div className="contact-item d-flex mb-4">
                                 <div className="contact-icon me-3">
                                     <FaPhoneAlt className="text-primary" size={24} />
@@ -80,7 +107,6 @@ try {
                                     <p className="contact-item-text mb-0">+91 12345 67890</p>
                                 </div>
                             </div>
-
                             <div className="contact-item d-flex mb-4">
                                 <div className="contact-icon me-3">
                                     <FaWhatsapp className="text-primary" size={24} />
@@ -92,7 +118,6 @@ try {
                                     </p>
                                 </div>
                             </div>
-
                             <div className="contact-item d-flex">
                                 <div className="contact-icon me-3">
                                     <FaEnvelope className="text-primary" size={24} />
@@ -104,7 +129,6 @@ try {
                             </div>
                         </div>
                     </div>
-
                     <div className="col-lg-6">
                         <div className="map-container h-100 rounded-3 overflow-hidden">
                             <h1>Map here</h1>
@@ -113,7 +137,7 @@ try {
                 </div>
             </div>
 
-
+            {/* Contact Form */}
             <div className="container py-5">
                 <div className="row justify-content-center">
                     <div className="col-lg-8">
@@ -122,7 +146,7 @@ try {
                             <div className='mb-3'>
                                 <label htmlFor="name" className="form-label">Your Name</label>
                                 <input
-                                    type="text" 
+                                    type="text"
                                     name='name'
                                     {...register("name", { required: "Name is Required" })}
                                     className={`form-control ${errors.name ? 'is-invalid' : 'isSuccess'}`}
@@ -133,14 +157,15 @@ try {
                             <div className='mb-3'>
                                 <label htmlFor="email" className="form-label">Your Email</label>
                                 <input
-                                    type="email" 
+                                    type="email"
                                     name='email'
                                     {...register("email", {
-                                        required: "Email is Required", pattern: {
+                                        required: "Email is Required",
+                                        pattern: {
                                             value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
                                             message: "Enter a valid email address"
                                         }
-                                    },)}
+                                    })}
                                     className={`form-control ${errors.email ? 'is-invalid' : 'isSuccess'}`}
                                     placeholder='your@email.com'
                                 />
@@ -165,7 +190,7 @@ try {
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="purpose" className="form-label">Purpose of Contact</label>
-                                <select 
+                                <select
                                     name='purpose'
                                     {...register("purpose", { required: "Purpose is Required" })}
                                     className={`form-select ${errors.purpose ? 'is-invalid' : 'isSuccess'}`}
@@ -181,8 +206,8 @@ try {
                             </div>
                             <div className="mb-4">
                                 <label htmlFor="message" className="form-label">Your Message</label>
-                                <textarea 
-                                 name='message'
+                                <textarea
+                                    name='message'
                                     {...register("message", {
                                         maxLength: {
                                             value: 100,
@@ -208,23 +233,20 @@ try {
                 </div>
             </div>
 
-
+            {/* WhatsApp Button */}
             <div className='text-center py-4 bg-light'>
                 <a href="https://wa.me/8623099391" target='_blank' className='whatsapp-btn'>
                     <FaWhatsapp className="me-2" /> Chat with Us on WhatsApp
                 </a>
             </div>
 
-
+            {/* FAQ */}
             <div className="container py-5">
                 <div className="row justify-content-center">
                     <div className="col-lg-8">
                         <h2 className="text-center mb-5">Frequently Asked Questions</h2>
                         {FAQ.map((item, index) => (
-                            <div
-                                key={index}
-                                className={`faq-card ${openIndex === index ? 'active' : ''}`}
-                            >
+                            <div key={index} className={`faq-card ${openIndex === index ? 'active' : ''}`}>
                                 <div className="faq-header" onClick={() => toggleFAQ(index)}>
                                     <span>{item.question}</span>
                                     {openIndex === index ? <IoIosArrowUp className="faq-icon" /> : <IoIosArrowDown className="faq-icon" />}
@@ -238,7 +260,7 @@ try {
                 </div>
             </div>
 
-
+            {/* Book Now CTA */}
             <div className='text-center py-5 bg-light'>
                 <button className='book-button btn btn-success btn-lg px-5 py-3 fw-bold'>
                     Check Availability / Book Now
