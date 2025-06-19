@@ -1,21 +1,28 @@
 import React from 'react';
 import '../assets/css/header.css';
 import { FaLeaf, FaUser, FaCalendarAlt, FaPhoneAlt, FaImages } from 'react-icons/fa';
-
-
-
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+
+
     return (
-        <header className="farmhouse-header">
+        <header className={`farmhouse-header `}>
             <nav className="navbar navbar-expand-lg">
                 <div className="head-div">
                     <a className="navbar-brand" href="#home">
                         <FaLeaf className="brand-icon" />
                         <span className="brand-name">Green Valley Farmhouse</span>
                     </a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
@@ -27,19 +34,19 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">
+                                <Link className="nav-link" to="/about">
                                     <span className="nav-icon"><FaLeaf /></span>
                                     About
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">
+                                <Link className="nav-link" to="/services">
                                     <span className="nav-icon"><FaLeaf /></span>
                                     Services
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="">
+                                <Link className="nav-link" to="/booking">
                                     <span className="nav-icon"><FaCalendarAlt /></span>
                                     Booking
                                 </Link>
@@ -51,7 +58,7 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/contact">
+                                <Link className="nav-link" to="/gallery">
                                     <span className="nav-icon"><FaImages /></span>
                                     Gallery
                                 </Link>
