@@ -72,10 +72,21 @@ const Signup = () => {
                             type={showPassword ? "text" : "password"}
                             {...register('password', {
                                 required: 'Password is required',
-                                pattern: {
-                                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
-                                    message: 'Password must be secure and meet complexity rules.'
-                                }
+                                minLength: {
+                                    value: 8,
+                                    message: 'Password must be at least 8 characters long',
+                                },
+                                validate: {
+                                    hasUpperCase: (value) =>
+                                        /[A-Z]/.test(value) || 'Must include at least one uppercase letter',
+                                    hasLowerCase: (value) =>
+                                        /[a-z]/.test(value) || 'Must include at least one lowercase letter',
+                                    hasNumber: (value) =>
+                                        /[0-9]/.test(value) || 'Must include at least one number',
+                                    hasSpecialChar: (value) =>
+                                        /[!@#$%^&*(),.?":{}|<>]/.test(value) ||
+                                        'Must include at least one special character',
+                                },
                             })}
                             className={`form-control pe-5 ${errors.password ? 'is-invalid' : ''}`}
                             placeholder="Create password"
