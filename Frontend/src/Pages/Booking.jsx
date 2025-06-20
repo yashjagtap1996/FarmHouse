@@ -2,8 +2,23 @@ import React from 'react';
 import '../assets/css/booking.css';
 import { FaLeaf, FaWifi, FaSwimmingPool, FaParking, FaDog } from 'react-icons/fa';
 import { MdBreakfastDining, MdNature } from 'react-icons/md';
+import { useForm } from 'react-hook-form';
 
 const Booking = () => {
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors }
+    } = useForm();
+
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+
+    const today = new Date().toISOString().split('T')[0];
+    const checkIn = watch('checkIn');
+
     return (
         <div className="container-fluid booking-container">
             <div className="container">
@@ -26,23 +41,33 @@ const Booking = () => {
                                     Relax and reconnect with nature at our sustainable farmhouse.
                                 </p>
 
-                                <form>
+                                <form onSubmit={handleSubmit(onSubmit)}>
                                     <div className="row">
                                         <div className="col-md-6 mb-3">
                                             <label className="form-label">Full Name</label>
                                             <input
                                                 type="text"
-                                                className="form-control form-control-lg"
+                                                {...register("name", { required: "Name is required" })}
+                                                className={`form-control form-control-lg ${errors.name ? 'is-invalid' : ''}`}
                                                 placeholder="John Doe"
                                             />
+                                            <p className='text-danger'>{errors.name?.message}</p>
                                         </div>
                                         <div className="col-md-6 mb-3">
                                             <label className="form-label">Email</label>
                                             <input
                                                 type="email"
-                                                className="form-control form-control-lg"
+                                                {...register("email", {
+                                                    required: "Email is required",
+                                                    pattern: {
+                                                        value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+                                                        message: "Enter a valid email address"
+                                                    }
+                                                })}
+                                                className={`form-control form-control-lg ${errors.email ? 'is-invalid' : ''}`}
                                                 placeholder="john@example.com"
                                             />
+                                            <p className='text-danger'>{errors.email?.message}</p>
                                         </div>
                                     </div>
 
@@ -50,47 +75,62 @@ const Booking = () => {
                                         <label className="form-label">Phone</label>
                                         <input
                                             type="tel"
-                                            className="form-control form-control-lg"
-                                            placeholder="+1 234 567 890"
+                                            {...register("phone", {
+                                                required: "Phone Number is required",
+                                                pattern: {
+                                                    value: /^[6-9]\d{9}$/,
+                                                    message: "Enter a valid 10-digit Indian phone number"
+                                                }
+                                            })}
+                                            className={`form-control form-control-lg ${errors.phone ? 'is-invalid' : ''}`}
+                                            placeholder="+91 9876543210"
                                         />
+                                        <p className='text-danger'>{errors.phone?.message}</p>
                                     </div>
 
                                     <div className="row">
                                         <div className="col-md-6 mb-3">
                                             <label className="form-label">Check-in</label>
-                                            <div className="input-group">
-                                                <input
-                                                    type="date"
-                                                    className="form-control form-control-lg"
-                                                />
-                                                <span className="input-group-text">
-                                                    <i className="bi bi-calendar-check"></i>
-                                                </span>
-                                            </div>
+                                            <input
+                                                type="date"
+                                                {...register("checkIn", {
+                                                    required: "Check-in date is required",
+                                                    validate: (value) =>
+                                                        value >= today || "Check-in date cannot be in the past"
+                                                })}
+                                                className={`form-control form-control-lg ${errors.checkIn ? 'is-invalid' : ''}`}
+                                            />
+                                            <p className='text-danger'>{errors.checkIn?.message}</p>
                                         </div>
                                         <div className="col-md-6 mb-3">
                                             <label className="form-label">Check-out</label>
-                                            <div className="input-group">
-                                                <input
-                                                    type="date"
-                                                    className="form-control form-control-lg"
-                                                />
-                                                <span className="input-group-text">
-                                                    <i className="bi bi-calendar-x"></i>
-                                                </span>
-                                            </div>
+                                            <input
+                                                type="date"
+                                                {...register("checkOut", {
+                                                    required: "Check-out date is required",
+                                                    validate: (value) =>
+                                                        !checkIn || value > checkIn || "Check-out must be after check-in"
+                                                })}
+                                                className={`form-control form-control-lg ${errors.checkOut ? 'is-invalid' : ''}`}
+                                            />
+                                            <p className='text-danger'>{errors.checkOut?.message}</p>
                                         </div>
                                     </div>
 
                                     <div className="mb-4">
                                         <label className="form-label">Number of Guests</label>
-                                        <select className="form-select form-select-lg">
+                                        <select
+                                            className="form-select form-select-lg"
+                                            {...register("guests", { required: "Please select number of guests" })}
+                                        >
+                                            <option value="">Select guests</option>
                                             {[1, 2, 3, 4, 5, 6].map((num) => (
                                                 <option key={num} value={num}>
                                                     {num} {num === 1 ? 'guest' : 'guests'}
                                                 </option>
                                             ))}
                                         </select>
+                                        <p className='text-danger'>{errors.guests?.message}</p>
                                     </div>
 
                                     <div className="mb-4">
@@ -99,6 +139,7 @@ const Booking = () => {
                                             className="form-control"
                                             rows="3"
                                             placeholder="Any special requirements..."
+                                            {...register("requests")}
                                         ></textarea>
                                     </div>
 
@@ -118,7 +159,7 @@ const Booking = () => {
                                         </div>
                                     </div>
 
-                                    <button className="btn booking-btn btn-lg w-100 py-3">
+                                    <button className="btn booking-btn btn-lg w-100 py-3" type="submit">
                                         Confirm Booking
                                     </button>
                                 </form>
@@ -169,6 +210,7 @@ const Booking = () => {
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
