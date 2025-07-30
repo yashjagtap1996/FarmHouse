@@ -36,27 +36,32 @@
             </section>
 
 
-            <!-- Contact Info & Map -->
             <section class="py-5 bg-light">
                 <div class="container">
                     <div class="row g-4">
-                        <div class="col-lg-6">
+                        <!-- Contact Info Card -->
+                        <div class="col-lg-6" data-aos="fade-right">
                             <div class="contact-info-card p-4 p-lg-5 h-100 shadow-sm">
                                 <h2 class="section-title mb-4 position-relative pb-3">
                                     <span class="position-relative">Our Contact Details</span>
                                 </h2>
                                 <div class="contact-items">
-                                    <div class="contact-item d-flex mb-4 p-3 rounded-3 bg-white shadow-sm">
+                                    <!-- Address -->
+                                    <div class="contact-item d-flex mb-4 p-3 rounded-3 bg-white shadow-sm"
+                                        data-aos="fade-up" data-aos-delay="100">
                                         <div class="contact-icon me-3 bg-primary bg-opacity-10 p-3 rounded-circle">
                                             <i class="fas fa-map-marker-alt text-primary fs-4"></i>
                                         </div>
                                         <div>
                                             <h5 class="contact-item-title mb-1 fw-bold">Address</h5>
-                                            <p class="contact-item-text mb-0">123 Green Fields Farm, Near ABC
-                                                Village, XYZ District</p>
+                                            <p class="contact-item-text mb-0">123 Green Fields Farm, Near ABC Village,
+                                                XYZ District
+                                            </p>
                                         </div>
                                     </div>
-                                    <div class="contact-item d-flex mb-4 p-3 rounded-3 bg-white shadow-sm">
+                                    <!-- Phone -->
+                                    <div class="contact-item d-flex mb-4 p-3 rounded-3 bg-white shadow-sm"
+                                        data-aos="fade-up" data-aos-delay="200">
                                         <div class="contact-icon me-3 bg-primary bg-opacity-10 p-3 rounded-circle">
                                             <i class="fas fa-phone-alt text-primary fs-4"></i>
                                         </div>
@@ -65,7 +70,9 @@
                                             <p class="contact-item-text mb-0">+91 12345 67890</p>
                                         </div>
                                     </div>
-                                    <div class="contact-item d-flex mb-4 p-3 rounded-3 bg-white shadow-sm">
+                                    <!-- WhatsApp -->
+                                    <div class="contact-item d-flex mb-4 p-3 rounded-3 bg-white shadow-sm"
+                                        data-aos="fade-up" data-aos-delay="300">
                                         <div class="contact-icon me-3 bg-primary bg-opacity-10 p-3 rounded-circle">
                                             <i class="fab fa-whatsapp text-primary fs-4"></i>
                                         </div>
@@ -79,7 +86,9 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="contact-item d-flex p-3 rounded-3 bg-white shadow-sm">
+                                    <!-- Email -->
+                                    <div class="contact-item d-flex p-3 rounded-3 bg-white shadow-sm" data-aos="fade-up"
+                                        data-aos-delay="400">
                                         <div class="contact-icon me-3 bg-primary bg-opacity-10 p-3 rounded-circle">
                                             <i class="fas fa-envelope text-primary fs-4"></i>
                                         </div>
@@ -92,7 +101,8 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6">
+                        <!-- Google Map -->
+                        <div class="col-lg-6" data-aos="fade-left">
                             <div
                                 class="map-container h-100 rounded-4 overflow-hidden shadow-lg border border-3 border-white">
                                 <iframe
@@ -106,47 +116,51 @@
                 </div>
             </section>
 
+
             <!-- Contact Form -->
-            <section id="contact-form" class="py-5 bg-white">
+            <section id="contact-form" class="py-5 bg-white" data-aos="fade-up">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
-                            <div class="text-center mb-5">
+                            <div class="text-center mb-5" data-aos="fade-down">
                                 <h2 class="display-5 fw-bold mb-3">Send Us a Message</h2>
-                                <p class="lead text-muted">Fill out the form below and we'll get back to you as soon
-                                    as possible</p>
+                                <p class="lead text-muted">Fill out the form below and we'll get back to you as soon as
+                                    possible</p>
                             </div>
                             <form action="/contact" method="POST"
-                                class="contact-form bg-light p-4 p-md-5 rounded-4 shadow-sm">
+                                class="contact-form bg-light p-4 p-md-5 rounded-4 shadow-sm" data-aos="zoom-in">
                                 <div class="row g-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" data-aos="fade-right">
                                         <label class="form-label fw-semibold">Your Name</label>
                                         <div class="input-group">
-                                            <span class="input-group-text bg-white"><i
-                                                    class="fas fa-user text-muted"></i></span>
+                                            <span class="input-group-text bg-white">
+                                                <i class="fas fa-user text-muted"></i>
+                                            </span>
                                             <input type="text" name="name" class="form-control" placeholder="John Doe"
                                                 required />
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" data-aos="fade-left">
                                         <label class="form-label fw-semibold">Your Email</label>
                                         <div class="input-group">
-                                            <span class="input-group-text bg-white"><i
-                                                    class="fas fa-envelope text-muted"></i></span>
+                                            <span class="input-group-text bg-white">
+                                                <i class="fas fa-envelope text-muted"></i>
+                                            </span>
                                             <input type="email" name="email" class="form-control"
                                                 placeholder="john@example.com" required />
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" data-aos="fade-up">
                                         <label class="form-label fw-semibold">Your Phone Number</label>
                                         <div class="input-group">
-                                            <span class="input-group-text bg-white"><i
-                                                    class="fas fa-phone text-muted"></i></span>
+                                            <span class="input-group-text bg-white">
+                                                <i class="fas fa-phone text-muted"></i>
+                                            </span>
                                             <input type="tel" name="phone" class="form-control"
                                                 placeholder="+91 12345 67890" required pattern="[6-9]{1}[0-9]{9}" />
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" data-aos="fade-up">
                                         <label class="form-label fw-semibold">Purpose</label>
                                         <select name="purpose" class="form-select" required>
                                             <option value="">Select a purpose</option>
@@ -156,13 +170,13 @@
                                             <option value="Other">Other</option>
                                         </select>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" data-aos="fade-up">
                                         <label class="form-label fw-semibold">Message</label>
                                         <textarea name="message" rows="5" class="form-control"
                                             placeholder="Your message here..." maxlength="500"></textarea>
                                         <div class="form-text text-end">Max 500 characters</div>
                                     </div>
-                                    <div class="col-12 mt-4">
+                                    <div class="col-12 mt-4" data-aos="zoom-in-up">
                                         <button type="submit"
                                             class="btn btn-success btn-lg w-100 py-3 fw-bold rounded-pill shadow">
                                             <i class="fas fa-paper-plane me-2"></i>Send Message
@@ -175,20 +189,24 @@
                 </div>
             </section>
 
+
             <!-- WhatsApp CTA -->
-            <section class="py-4 bg-success bg-opacity-10">
+            <section class="py-4 bg-success bg-opacity-10" data-aos="fade-up">
                 <div class="container text-center">
-                    <div class="d-inline-block p-3 p-md-4 rounded-4 bg-white shadow-sm">
+                    <div class="d-inline-block p-3 p-md-4 rounded-4 bg-white shadow-sm" data-aos="zoom-in"
+                        data-aos-delay="200">
                         <div class="d-flex flex-column flex-md-row align-items-center gap-3">
-                            <div class="whatsapp-icon bg-success rounded-circle p-3">
+                            <div class="whatsapp-icon bg-success rounded-circle p-3" data-aos="fade-right"
+                                data-aos-delay="400">
                                 <i class="fab fa-whatsapp text-white fs-2"></i>
                             </div>
-                            <div class="text-start">
+                            <div class="text-start" data-aos="fade-up" data-aos-delay="600">
                                 <h3 class="h5 fw-bold mb-1">Need immediate assistance?</h3>
                                 <p class="mb-0 text-muted">Chat with us directly on WhatsApp</p>
                             </div>
                             <a href="https://wa.me/8623099391" target="_blank"
-                                class="btn btn-success btn-lg px-4 rounded-pill fw-bold ms-md-auto">
+                                class="btn btn-success btn-lg px-4 rounded-pill fw-bold ms-md-auto" data-aos="fade-left"
+                                data-aos-delay="800">
                                 <i class="fab fa-whatsapp me-2"></i>Start Chat
                             </a>
                         </div>
@@ -196,18 +214,20 @@
                 </div>
             </section>
 
+
             <!-- FAQ Section -->
-            <section class="py-5 bg-light">
+            <section class="py-5 bg-light" data-aos="fade-up">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
-                            <div class="text-center mb-5">
+                            <div class="text-center mb-5" data-aos="fade-up" data-aos-delay="100">
                                 <h2 class="display-5 fw-bold mb-3">Frequently Asked Questions</h2>
                                 <p class="lead text-muted">Find answers to common questions about our farm stays</p>
                             </div>
                             <div class="accordion" id="faqAccordion">
                                 <% faq.map((item, index)=> { %>
-                                    <div class="accordion-item border-0 rounded-3 shadow-sm mb-3 overflow-hidden">
+                                    <div class="accordion-item border-0 rounded-3 shadow-sm mb-3 overflow-hidden"
+                                        data-aos="fade-up" data-aos-delay="<%= 200 + index * 100 %>">
                                         <h3 class="accordion-header" id="heading<%= index %>">
                                             <button class="accordion-button collapsed py-3 fw-bold" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>"
@@ -231,13 +251,14 @@
                 </div>
             </section>
 
+
             <!-- Book CTA -->
-            <section class="py-5 bg-white">
+            <section class="py-5 bg-white" data-aos="fade-up">
                 <div class="container text-center">
-                    <div class="p-4 p-md-5 bg-success bg-opacity-10 rounded-4">
+                    <div class="p-4 p-md-5 bg-success bg-opacity-10 rounded-4" data-aos="zoom-in" data-aos-delay="100">
                         <h2 class="display-5 fw-bold mb-3">Ready for Your Farm Stay?</h2>
                         <p class="lead mb-4">Experience the beauty of nature at Green Fields Farm</p>
-                        <div class="d-flex gap-3 justify-content-center">
+                        <div class="d-flex gap-3 justify-content-center" data-aos="fade-up" data-aos-delay="200">
                             <a href="/booking" class="btn btn-success btn-lg px-4 rounded-pill fw-bold shadow">
                                 <i class="fas fa-calendar-check me-2"></i>Check Availability
                             </a>
@@ -248,6 +269,7 @@
                     </div>
                 </div>
             </section>
+
         </div>
 
         <script>
