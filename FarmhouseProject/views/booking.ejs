@@ -13,11 +13,11 @@
     </section>
 
     <!-- Booking Form Section -->
-    <section class="booking-form-section">
+    <section class="booking-form-section" data-aos="fade-up" data-aos-duration="1000">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="booking-card">
+                    <div class="booking-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="booking-card-header">
                             <h2>Book Your Stay</h2>
                             <p>Relax and reconnect with nature at our sustainable farmhouse</p>
@@ -25,6 +25,7 @@
                         <div class="booking-card-body">
                             <form action="/booking" method="POST">
                                 <div class="row g-3">
+                                    <!-- Name -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Full Name</label>
@@ -35,6 +36,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Email -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Email</label>
@@ -45,6 +48,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Phone -->
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Phone Number</label>
@@ -55,6 +60,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Dates -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Check-in Date</label>
@@ -76,6 +83,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Guests -->
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Number of Guests</label>
@@ -89,14 +98,13 @@
                                                     <% } %>
                                                         <option value="other">Other</option>
                                             </select>
-
-                                            <!-- Hidden manual input field -->
                                             <input type="number" id="manualGuestInput" name="manualGuests"
                                                 class="form-control mt-2" placeholder="Enter number of guests" min="7"
                                                 style="display:none;" />
                                         </div>
                                     </div>
 
+                                    <!-- Special Requests -->
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Special Requests</label>
@@ -124,6 +132,7 @@
                                         </div>
                                     </div>
 
+                                    <!-- Submit -->
                                     <div class="col-12">
                                         <button class="btn booking-btn" type="submit">
                                             <i class="fas fa-calendar-check me-2"></i>Confirm Booking
@@ -135,7 +144,7 @@
                     </div>
 
                     <!-- Amenities Section -->
-                    <div class="amenities-card mb-5">
+                    <div class="amenities-card mb-5" data-aos="fade-up" data-aos-delay="300">
                         <div class="amenities-header">
                             <h3>Our Amenities</h3>
                             <p>Everything you need for a comfortable stay</p>
@@ -144,9 +153,7 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="amenity-item">
-                                        <div class="amenity-icon">
-                                            <i class="fas fa-wifi"></i>
-                                        </div>
+                                        <div class="amenity-icon"><i class="fas fa-wifi"></i></div>
                                         <div class="amenity-text">
                                             <h5>Free WiFi</h5>
                                             <p>High-speed internet throughout</p>
@@ -155,9 +162,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="amenity-item">
-                                        <div class="amenity-icon">
-                                            <i class="fas fa-swimmer"></i>
-                                        </div>
+                                        <div class="amenity-icon"><i class="fas fa-swimmer"></i></div>
                                         <div class="amenity-text">
                                             <h5>Swimming Pool</h5>
                                             <p>Seasonal outdoor pool</p>
@@ -166,9 +171,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="amenity-item">
-                                        <div class="amenity-icon">
-                                            <i class="fas fa-utensils"></i>
-                                        </div>
+                                        <div class="amenity-icon"><i class="fas fa-utensils"></i></div>
                                         <div class="amenity-text">
                                             <h5>Breakfast Included</h5>
                                             <p>Fresh farm-to-table meals</p>
@@ -177,9 +180,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="amenity-item">
-                                        <div class="amenity-icon">
-                                            <i class="fas fa-car"></i>
-                                        </div>
+                                        <div class="amenity-icon"><i class="fas fa-car"></i></div>
                                         <div class="amenity-text">
                                             <h5>Parking Available</h5>
                                             <p>Secure on-site parking</p>
@@ -188,9 +189,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="amenity-item">
-                                        <div class="amenity-icon">
-                                            <i class="fas fa-tree"></i>
-                                        </div>
+                                        <div class="amenity-icon"><i class="fas fa-tree"></i></div>
                                         <div class="amenity-text">
                                             <h5>Garden View</h5>
                                             <p>Beautiful natural surroundings</p>
@@ -199,9 +198,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="amenity-item">
-                                        <div class="amenity-icon">
-                                            <i class="fas fa-dog"></i>
-                                        </div>
+                                        <div class="amenity-icon"><i class="fas fa-dog"></i></div>
                                         <div class="amenity-text">
                                             <h5>Pet Friendly</h5>
                                             <p>Bring your furry friends</p>
@@ -210,11 +207,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> <!-- End amenities -->
                 </div>
             </div>
         </div>
     </section>
+
 </div>
 
 <script>
