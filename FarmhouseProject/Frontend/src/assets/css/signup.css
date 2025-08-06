@@ -1,0 +1,45 @@
+.main-div {
+    min-height: 130vh;
+}
+
+.signup-form {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 30px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.logo-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+/* Position the eye icon properly */
+.show-btn-inside {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(107, 107, 231);
+}
+
+.form-control:focus+.show-btn-inside,
+.show-btn-inside:hover {
+    color: #000;
+}
