@@ -154,7 +154,7 @@ const Header = () => {
 
                             {/* Auth Section */}
                             {user ? (
-                                <li className="nav-item dropdown">
+                                <li className="nav-item dropdown me-3">
                                     <div
                                         className="profile-circle"
                                         onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -211,3 +211,4 @@ const Header = () => {
 };
 
 export default Header;
+
