@@ -29,6 +29,7 @@ const Header = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     // Fetch user session
+    // Fetch user session
     const fetchUser = async () => {
         try {
             const res = await axios.get('http://localhost:3000/user', {
@@ -36,10 +37,16 @@ const Header = () => {
             });
             setUser(res.data);
         } catch (err) {
-            console.error('Failed to fetch user:', err);
-            setUser(null);
+            if (err.response?.status === 401) {
+                // User not logged in - this is expected, not an error
+                setUser(null);
+            } else {
+                console.error('Failed to fetch user:', err);
+                setUser(null);
+            }
         }
     };
+
 
     // Logout
     const handleLogout = async () => {
@@ -154,7 +161,7 @@ const Header = () => {
 
                             {/* Auth Section */}
                             {user ? (
-                                <li className="nav-item dropdown me-3">
+                                <li className="nav-item dropdown mx-3">
                                     <div
                                         className="profile-circle"
                                         onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -211,4 +218,3 @@ const Header = () => {
 };
 
 export default Header;
-
