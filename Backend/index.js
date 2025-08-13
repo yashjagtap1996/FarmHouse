@@ -4,6 +4,7 @@ import connectDB from "./config/database.js";
 import contactDetailsRoutes from "./routes/contactDetails.routes.js";
 import bookingDetailsRoutes from "./routes/booking.routes.js";
 import userRoutes from "./routes/user.route.js";
+import authRoute from "./routes/auth.route.js";
 import session from "express-session";
 
 connectDB();
@@ -31,6 +32,7 @@ app.use(
 app.use("/contact", contactDetailsRoutes);
 app.use("/", userRoutes);
 app.use("/booking", bookingDetailsRoutes);
+app.use("/auth", authRoute);
 
 const PORT = process.env.PORT || 3000;
 
