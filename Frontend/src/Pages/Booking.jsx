@@ -5,6 +5,8 @@ import {
     FaWifi, FaSwimmer, FaUtensils, FaCar, FaTree, FaDog, FaCalendarCheck
 } from 'react-icons/fa';
 import '../assets/css/booking.css';
+import { useToast } from '../ToastProvider';
+import axios from 'axios';
 
 export default function Booking() {
     const {
@@ -13,12 +15,14 @@ export default function Booking() {
         watch,
         setValue,
         formState: { errors },
+        reset,
         setError,
         clearErrors
     } = useForm();
 
     const [manualGuestsVisible, setManualGuestsVisible] = useState(false);
     const [priceInfo, setPriceInfo] = useState({ nights: 0, guests: 0, basePrice: 0, total: 500 });
+    const { showToast } = useToast();
 
     const serviceFee = 500;
     const basePricePerNightPerGuest = 2500;
@@ -93,10 +97,36 @@ export default function Booking() {
         return true;
     };
 
-    const onSubmit = data => {
-        console.log('Form submitted:', data);
-        // handle post request here
+    const onSubmit = async (data) => {
+        try {
+            const totalPrice = priceInfo.total;
+            const guestCount = guests === "other" ? manualGuests : guests;
+
+            const payload = {
+                ...data,
+                guests: guestCount,
+                totalAmount: totalPrice,
+            };
+
+            const res = await axios.post("http://localhost:3000/booking", payload);
+            showToast(res.data.message, "success");
+            reset();
+            setPriceInfo({ nights: 0, guests: 0, basePrice: 0, total: 500 });
+            setManualGuestsVisible(false);
+            clearErrors();
+        } catch (error) {
+            console.error(error);
+            if (error.response && error.response.data && error.response.data.message) {
+                // Show backend error message (like "Booking already exists")
+                showToast(error.response.data.message, "danger");
+            } else {
+                // Fallback generic message
+                showToast("Error during booking. Please try again.", "danger");
+            }
+        }
     };
+
+
 
     return (
         <div className="booking-page">
