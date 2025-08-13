@@ -61,6 +61,15 @@ const Header = () => {
         }
     };
 
+    const handleBookingClick = () => {
+        if (!user) {
+            navigate('/login');
+            showToast('Please login first to book your stay', 'danger');
+        } else {
+            navigate('/booking');
+        }
+    }
+
     // Get initials
     const getInitials = (name) => {
         if (!name) return '';
@@ -141,10 +150,12 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link ${pathname === '/booking' ? 'active' : ''}`} to="/booking">
-                                    <FaCalendarAlt className="nav-icon" />
-                                    <span className="nav-text">Booking</span>
-                                </Link>
+                                <button style={{ all: 'unset' }} onClick={handleBookingClick}>
+                                    <Link className={`nav-link ${pathname === '/booking' ? 'active' : ''}`} to="/booking">
+                                        <FaCalendarAlt className="nav-icon" />
+                                        <span className="nav-text">Booking</span>
+                                    </Link>
+                                </button>
                             </li>
                             <li className="nav-item">
                                 <Link className={`nav-link ${pathname === '/gallery' ? 'active' : ''}`} to="/gallery">
