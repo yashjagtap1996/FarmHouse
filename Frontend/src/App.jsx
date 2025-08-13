@@ -13,6 +13,7 @@ import Services from './Pages/Services';
 import Gallery from './Pages/Gallery';
 import { ThemeProvider } from './ThemeContext'; // Make sure this is correct path
 import { ToastProvider } from './ToastProvider';
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
   return (
@@ -25,7 +26,12 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/booking" element={<Booking />} />
+            <Route path="/booking" element={
+              <PrivateRoute>
+                <Booking />
+              </PrivateRoute>
+
+            } />
             <Route path="/signup" element={<Signup />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/gallery" element={<Gallery />} />
